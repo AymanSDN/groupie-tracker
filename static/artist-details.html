@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Artist.Name }} - Artist Details</title>
     <style>
+        *{
+            font-family: 'Roboto', sans-serif;
+        }
         body {
-            font-family: 'Arial', sans-serif;
             background-color: #f0f2f5;
             color: #333;
             margin: 0;
@@ -142,7 +144,7 @@
 
 <body>
     <div class="container">
-        <h1>Artist Details: {{ .Artist.Name }}</h1>
+        <h1>{{ .Artist.Name }}</h1>
 
         <!-- Artist Image Section -->
         <div class="artist-image">
@@ -183,7 +185,7 @@
 
             <!-- Tour Dates Section -->
             <div class="info-section">
-                <h2>Tour Dates</h2>
+                <h2>Dates</h2>
                 <p>
                     {{ range $index, $date := .Dates }}
                     {{ if $index }} <br> {{ end }}{{ $date }}
