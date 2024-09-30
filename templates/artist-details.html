@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Artist.Name }} - Artist Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .artist-image {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .artist-image img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Flexbox for horizontal layout */
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .info-section {
+            flex: 1 1 calc(5% - 0px); /* 25% width per section, adjusting with margins */
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .info-section p {
+            font-size: 1.1em;
+            color: #666;
+            margin: 0;
+        }
+
+        .info-section p strong {
+            color: #333;
+        }
+
+
+        .back {
+            /* display: inline-block; */
+            margin-top: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+       
+        }
+
+        .back:hover {
+            background-color: #555;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .info-section {
+                flex: 1 1 calc(50% - 20px); /* Two columns on medium screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .info-section {
+                flex: 1 1 100%; /* One column per row on small screens */
+            }
+
+            .container h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Artist Details: {{ .Artist.Name }}</h1>
+
+        <!-- Artist Image Section -->
+        <div class="artist-image">
+            <img src="{{ .Artist.ImageUrl }}" alt="{{ .Artist.Name }} Image">
+        </div>
+
+        <!-- Info Grid for Horizontal Layout -->
+        <div class="info-grid">
+            <!-- Members Section -->
+            <div class="info-section">
+                <h2>Members</h2>
+                <p>
+                    {{ range $index, $member := .Artist.Members }}
+                    {{ if $index }} <br> {{ end }}{{ $member }}
+                    {{ end }}
+                </p>
+            </div>
+
+            <!-- Creation Date and First Album Section -->
+            <div class="info-section">
+                <h2>First Album</h2>
+                <p>{{ .Artist.FirstAlbum }}</p>
+                <h2>Creation Date</h2>
+                <p>{{ .Artist.CreationDate }}</p>
+            </div>
+
+            <!-- Locations Section -->
+            <div class="info-section">
+                <h2>Locations</h2>
+                <p>
+                    {{ range $index, $location := .Locations }}
+                    {{ if $index }} <br> {{ end }}{{ $location }}
+                    {{ else }}
+                    <em>No locations available.</em>
+                    {{ end }}
+                </p>
+            </div>
+
+            <!-- Tour Dates Section -->
+            <div class="info-section">
+                <h2>Tour Dates</h2>
+                <p>
+                    {{ range $index, $date := .Dates }}
+                    {{ if $index }} <br> {{ end }}{{ $date }}
+                    {{ else }}
+                    <em>No dates available.</em>
+                    {{ end }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="back">
+            <a class="back-link" href="/">Back to Artist List</a>
+        </div>
+    </div>
+</body>
+
+</html>

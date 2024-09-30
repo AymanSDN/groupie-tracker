@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie Tracker Artists</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+
+
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        header {
+            background: #333;
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            background-image: url('macos-monterey-wwdc-21-stock-dark-mode-5k-6016x6016-5585.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            width: 90%;
+            margin: 30px auto;
+            display: grid;
+            /* align-content: center;
+            justify-content: center; */
+            grid-template-columns: repeat(5, 2fr);
+            gap: 20px;
+        }
+
+        .card {
+            display: block;
+            justify-content : center;
+            align-items: center;
+            background: #3c3e44;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            justify-content: center;
+            width: 50%;
+            height: 50%;    
+            object-fit: cover;
+            border-radius: 160%;
+            border: solid #fcf6f6 3px;
+            /* border-bottom: 0px solid #444; */
+        }
+
+        .card-content{
+            display:flex ;
+            justify-content: center;
+        }
+
+        
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        Groupie Tracker Artists
+    </header>
+    <div class="container">
+        {{range .ArtistInfos}} <!-- Loop through the artists -->
+        <div class="card">
+            
+            <a href="/artist?id={{.ID}}">
+                <img src="{{.ImageUrl}}" alt="{{.Name}}">
+        </a>
+            <div class="card-content">
+                <h3>
+                    {{.Name}}
+                </h3>
+            </div>
+        </div>
+        {{end}}
+    </div>
+    <footer>
+        Groupie Tracker © 2024
+    </footer>
+</body>
+
+</html>
