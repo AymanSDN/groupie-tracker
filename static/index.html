@@ -8,94 +8,91 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-
-
             margin: 0;
             padding: 0;
-            color: #fff;
         }
 
         header {
-            background: #333;
+            background: #3c3e44;
             padding: 20px;
             text-align: center;
             font-size: 2rem;
             color: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
+        h3 {
+            margin: 10px;
+        }
 
         .container {
-            background-image: url('macos-monterey-wwdc-21-stock-dark-mode-5k-6016x6016-5585.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
             width: 90%;
             margin: 30px auto;
             display: grid;
-            /* align-content: center;
-            justify-content: center; */
-            grid-template-columns: repeat(5, 2fr);
-            gap: 20px;
+            grid-template-columns: repeat(5, 1fr);
         }
 
         .card {
-            display: block;
-            justify-content : center;
-            align-items: center;
-            background: #3c3e44;
-            border-radius: 8px;
+            color: #3c3e44;
+            margin: 10px 25px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease;
         }
-        
+
         .card:hover {
             transform: translateY(-10px);
         }
 
         .card img {
             justify-content: center;
-            width: 50%;
-            height: 50%;    
-            object-fit: cover;
+            width:70%;
+            height: 100 0px;
             border-radius: 160%;
-            border: solid #fcf6f6 3px;
-            /* border-bottom: 0px solid #444; */
+            margin: 15px;
         }
 
-        .card-content{
-            display:flex ;
+        .card-content {
+            display: flex;
             justify-content: center;
+
         }
 
-        
+        a {
+            text-decoration: none;
+        }
+
+
         footer {
-            text-align: center;
-            padding: 10px;
             background: #333;
+            text-align: center;
             color: #fff;
             margin-top: 50px;
+            padding: 10px;
         }
     </style>
 </head>
 
 <body>
     <header>
-        Groupie Tracker Artists
+        <h1>
+            Groupie Tracker Artists
+        </h1>
     </header>
     <div class="container">
         {{range .ArtistInfos}} <!-- Loop through the artists -->
-        <div class="card">
-            
-            <a href="/artist?id={{.ID}}">
-                <img src="{{.ImageUrl}}" alt="{{.Name}}">
-        </a>
-            <div class="card-content">
-                <h3>
-                    {{.Name}}
-                </h3>
+        <a href="/artist?id={{.ID}}">
+            <div class="card">
+                <center>
+                    <img src="{{.ImageUrl}}" alt="{{.Name}}">
+                    <center>
+                        <div class="card-content">
+                            <h3>
+                                {{.Name}}
+                            </h3>
+                        </div>
             </div>
-        </div>
+        </a>
         {{end}}
     </div>
     <footer>
